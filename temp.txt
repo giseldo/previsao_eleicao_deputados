@@ -1,0 +1,2 @@
+#frames = [df_train, df_test]
+#df_tudo_X = pd.concat(frames)
