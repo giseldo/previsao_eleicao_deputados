@@ -1,2 +1,11 @@
 #frames = [df_train, df_test]
 #df_tudo_X = pd.concat(frames)
+
+
+clf = svm.SVC()
+scoring = {"mcc" : make_scorer(matthews_corrcoef), "f1":"f1", "acc": "accuracy"}
+clf.fit(train_X, train_y)
+result_ros = cross_validate(clf, train_X, train_y, cv = 5, scoring=scoring)
+print("MCC:", round(result_ros['test_mcc'].mean(), 4))
+print("F1:", round(result_ros['test_f1'].mean(), 4))
+print("ACC:", round(result_ros['test_acc'].mean(), 4))
